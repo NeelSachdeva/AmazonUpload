@@ -1,0 +1,25 @@
+package tester
+
+import com.amazonaws.services.s3.AmazonS3Client
+import com.amazonaws.auth.BasicAWSCredentials
+import java.io.File
+import play.api._
+
+
+object AmazonS3FileUploadExample extends App {
+ 
+
+    val bucketName = "neelkanthbucket"
+    val profilePic = new File("/home/neelkanth/Desktop/Changes.png")
+    
+    val AWS_ACCESS_KEY = "***************************"
+    val AWS_SECRET_KEY = "***************************"
+
+    val yourAWSCredentials = new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY)
+    val amazonS3Client = new AmazonS3Client(yourAWSCredentials)
+    amazonS3Client.createBucket(bucketName)
+    amazonS3Client.putObject(bucketName, "FileName", profilePic)
+
+
+
+}
